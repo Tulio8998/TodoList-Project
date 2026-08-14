@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'org.example'
@@ -14,6 +15,14 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
+application {
+    mainClass = 'com.zg.todolist.Main'
+}
+
 test {
     useJUnitPlatform()
+}
+
+run {
+    standardInput = System.in
 }
