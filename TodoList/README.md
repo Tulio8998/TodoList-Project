@@ -1,3 +1,6 @@
+## Autor
+Desenvolvido por Túlio
+
 ## Tecnologias Utilizadas
 * **Java:** Linguagem principal do projeto (Lógica, Orientação a Objetos, Stream API, File IO)
 * **Gradle:** Ferramenta de build

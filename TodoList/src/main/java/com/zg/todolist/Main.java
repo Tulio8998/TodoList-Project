@@ -1,5 +1,10 @@
 package com.zg.todolist;
 
+/*
+ * Desenvolvido por: Túlio
+ * ZG-Hero Project - Trilha (K1-T3): Java
+*/
+
 import com.zg.todolist.cli.MenuTerminal;
 import com.zg.todolist.repository.TarefaRepository;
 import com.zg.todolist.repository.UsuarioRepository;
