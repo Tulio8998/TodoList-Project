@@ -2,8 +2,11 @@ package com.zg.todolist.service;
 
 import com.zg.todolist.model.Status;
 import com.zg.todolist.model.Tarefa;
+import com.zg.todolist.model.Usuario;
 import com.zg.todolist.repository.TarefaRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,6 +48,13 @@ public class TarefaService {
                 }
                 tarefa.setPrioridade(prioridade);
                 break;
+            case 6:
+                tarefa.setDataTermino(LocalDate.parse(valor));
+                break;
+            case 7:
+                tarefa.setHorarioAlarme(LocalDateTime.parse(valor));
+                break;
+
             default:
                 System.out.println("Opção inválida.");
         }
@@ -70,4 +80,20 @@ public class TarefaService {
     public int contarTarefasStatus(Status status) {
         return tarefaRepository.listarPorStatus(status).size();
     }
+
+    public void carregarTarefaUsuario(Usuario usuario) {
+        tarefaRepository.usuarioAtual(usuario.getEmail());
+    }
+
+    public void verificarAlarmes() {
+        LocalDateTime agora = LocalDateTime.now();
+        for (Tarefa t : tarefaRepository.getTarefas()) {
+            if (t.getHorarioAlarme() != null) {
+               if (!t.getHorarioAlarme().isAfter(agora) && t.getStatus() != Status.DONE) {
+                    System.out.println("Alarme! Tarefa procima do termino: " + t.getNome());
+                }
+            }
+        }
+    }
+
 }

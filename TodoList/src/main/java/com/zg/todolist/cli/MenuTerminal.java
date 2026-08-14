@@ -6,6 +6,7 @@ import com.zg.todolist.service.TarefaService;
 import com.zg.todolist.service.UsuarioService;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
@@ -62,8 +63,11 @@ public class MenuTerminal {
         String senha = leStringConsole(scanner);
 
         Usuario usuario = new Usuario(nome, email, senha);
-        usuarioService.cadastrarUsuario(usuario);
-        System.out.println("Usuario cadastrado");
+        if (usuarioService.cadastrarUsuario(usuario)) {
+            System.out.println("Usuario cadastrado");
+        } else {
+            System.out.println("Email ja pertecente a outro usuario");
+        }
     }
 
     public void entrar() {
@@ -76,6 +80,7 @@ public class MenuTerminal {
         Usuario usuario = usuarioService.entrar(email, senha);
         if (usuario != null) {
             System.out.println("Usuario logado");
+            tarefaService.carregarTarefaUsuario(usuario);
             tarefas(usuario);
         } else {
             System.out.println("Usuario nao encontrado\nEmail ou senha incorreta");
@@ -83,6 +88,7 @@ public class MenuTerminal {
     }
 
     public void tarefas(Usuario usuario) {
+        tarefaService.verificarAlarmes();
         System.out.println("Seja bem vindo as suas tarefas");
         do {
             System.out.println("\nMenu:");
@@ -127,7 +133,6 @@ public class MenuTerminal {
         String nome = leStringConsole(scanner);
         System.out.print("Descricao: ");
         String descricao = leStringConsole(scanner);
-        System.out.print("Data de termino (AAAA-MM-DD): ");
         LocalDate dataTermino;
         while (true) {
             System.out.print("Data de termino (AAAA-MM-DD): ");
@@ -167,7 +172,17 @@ public class MenuTerminal {
                 System.out.println("Status invalido");
                 return;
         }
-        Tarefa novaTarefa = new Tarefa(nome, descricao, dataTermino, prioridade, categoria, status);
+        LocalDateTime horarioAlarme;
+        while (true) {
+            System.out.print("Data de alarme (AAAA-MM-DDTHH:mm): ");
+            try {
+                horarioAlarme = LocalDateTime.parse(leStringConsole(scanner));
+                break;
+            } catch (DateTimeParseException e) {
+                System.out.println("Data invalida!\nDigite no formato AAAA-MM-DDTHH:mm");
+            }
+        }
+        Tarefa novaTarefa = new Tarefa(nome, descricao, dataTermino, prioridade, categoria, status, horarioAlarme);
         tarefaService.salvarTarefa(novaTarefa);
 
         System.out.println("Tarefa cadastrada com sucesso!");
@@ -199,6 +214,8 @@ public class MenuTerminal {
         System.out.println("3. Categoria");
         System.out.println("4. Status");
         System.out.println("5. Prioridade");
+        System.out.println("6. Data de termino");
+        System.out.println("7. Alarme atual");
         int resposta = leInteiroConsole(scanner);
         String valor;
 
@@ -249,6 +266,32 @@ public class MenuTerminal {
                         System.out.println("Prioridade invalida. Deve estar entre 1 e 5");
                     } catch (NumberFormatException e) {
                         System.out.println("Prioridade invalida. Digite um número de 1 a 5");
+                    }
+                }
+                break;
+            case 6:
+                while (true) {
+                    System.out.print("Data de termino (AAAA-MM-DD): ");
+                    valor = leStringConsole(scanner);
+                    try {
+                        LocalDate.parse(valor);
+                        break;
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Data invalida! Digite no formato AAAA-MM-DD");
+                    }
+                }
+                break;
+            case 7:
+                while (true) {
+                    System.out.print("Data e hora do alarme (AAAA-MM-DDTHH:mm): ");
+                    valor = leStringConsole(scanner);
+                    try {
+                        LocalDateTime.parse(valor);
+                        break;
+                    } catch (DateTimeParseException e) {
+                        System.out.println(
+                                "Data invalida! Digite no formato AAAA-MM-DDTHH:mm"
+                        );
                     }
                 }
                 break;
@@ -357,6 +400,7 @@ public class MenuTerminal {
             System.out.println("Prioridade: " + t.getPrioridade());
             System.out.println("Categoria: " + t.getCategoria());
             System.out.println("Status: " + t.getStatus());
+            System.out.println("Alarme: " + t.getHorarioAlarme());
             System.out.println("\n");
         });
     }
