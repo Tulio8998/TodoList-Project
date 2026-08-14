@@ -10,7 +10,7 @@ public class Tarefa implements Comparable<Tarefa> {
     private int prioridade;
     private Status status;
 
-    public Tarefa(String descricao, String nome, LocalDate dataTermino, int prioridade, String categoria, Status status) {
+    public Tarefa(String nome, String descricao, LocalDate dataTermino, int prioridade, String categoria, Status status) {
         if (prioridade < 1 || prioridade > 5) {
             throw new IllegalArgumentException("Prioridade invalida\n Deve esta entre 1 e 5");
         }
