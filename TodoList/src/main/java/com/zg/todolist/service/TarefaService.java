@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TarefaService {
-    private TarefaRepository tarefaRepository;
+    private final TarefaRepository tarefaRepository;
 
     public TarefaService(TarefaRepository tarefaRepository) {
         this.tarefaRepository = tarefaRepository;
@@ -18,6 +18,10 @@ public class TarefaService {
     public void salvarTarefa(Tarefa tarefa) {
         tarefaRepository.salvarTarefa(tarefa);
         Collections.sort(tarefaRepository.getTarefas());
+    }
+
+    public void removerTarefa(Tarefa tarefa) {
+        tarefaRepository.removerTarefa(tarefa);
     }
 
     public void atualizarTarefa(Tarefa tarefa, int opcao, String valor) {
@@ -31,8 +35,18 @@ public class TarefaService {
             case 3:
                 tarefa.setCategoria(valor);
                 break;
+            case 4:
+                tarefa.setStatus(Status.valueOf(valor.toUpperCase()));
+                break;
+            case 5:
+                int prioridade = Integer.parseInt(valor);
+                if (prioridade < 1 || prioridade > 5) {
+                    System.out.println("A prioridade deve estar entre 1 e 5.");
+                }
+                tarefa.setPrioridade(prioridade);
+                break;
             default:
-                throw new IllegalArgumentException("Opção invalida");
+                System.out.println("Opção inválida.");
         }
         tarefaRepository.atualizarTarefa(tarefa);
     }
@@ -47,5 +61,13 @@ public class TarefaService {
 
     public List<Tarefa> listarPorStatus(Status status) {
         return tarefaRepository.getTarefas().stream().filter(t -> t.getStatus() == status).collect(Collectors.toList());
+    }
+
+    public List<Tarefa> listarTarefas() {
+        return tarefaRepository.getTarefas();
+    }
+
+    public int contarTarefasStatus(Status status) {
+        return tarefaRepository.listarPorStatus(status).size();
     }
 }

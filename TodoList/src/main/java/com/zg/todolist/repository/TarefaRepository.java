@@ -35,4 +35,8 @@ public class TarefaRepository {
     public List<Tarefa> getTarefas() {
         return tarefas;
     }
+
+    public List<Tarefa> listarPorStatus(Status status) {
+        return tarefas.stream().filter(t -> t.getStatus() == status).collect(Collectors.toList());
+    }
 }
