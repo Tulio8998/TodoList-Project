@@ -1,7 +1,10 @@
 package com.zg.todolist.cli;
 
+import com.zg.todolist.model.Alarme;
 import com.zg.todolist.model.Tarefa;
 import com.zg.todolist.model.Usuario;
+import com.zg.todolist.repository.AlarmeRepository;
+import com.zg.todolist.service.AlarmeService;
 import com.zg.todolist.service.TarefaService;
 import com.zg.todolist.service.UsuarioService;
 
@@ -18,10 +21,12 @@ public class MenuTerminal {
     Scanner scanner = new Scanner(System.in);
     private final UsuarioService usuarioService;
     private final TarefaService tarefaService;
+    private final AlarmeService alarmeService;
 
-    public MenuTerminal(UsuarioService usuarioService, TarefaService tarefaService) {
+    public MenuTerminal(UsuarioService usuarioService, TarefaService tarefaService, AlarmeService alarmeService) {
         this.usuarioService = usuarioService;
         this.tarefaService = tarefaService;
+        this.alarmeService = alarmeService;
     }
 
     public void executaTerminal() {
@@ -90,14 +95,14 @@ public class MenuTerminal {
     public void tarefas(Usuario usuario) {
         System.out.println("Seja bem vindo as suas tarefas");
         do {
-            tarefaService.verificarAlarmes();
             System.out.println("\nMenu:");
             System.out.println("1. Cadastrar tarefas");
             System.out.println("2. Editar tarefas");
             System.out.println("3. Exluir tarefas");
             System.out.println("4. Listar tarefas");
             System.out.println("5. Consultar quantidade por status");
-            System.out.println("6. Sair");
+            System.out.println("6. Gerenciar alarmes");
+            System.out.println("7. Sair");
             System.out.print("Resposta: ");
             int resposta = leInteiroConsole(scanner);
 
@@ -118,6 +123,9 @@ public class MenuTerminal {
                     consultarQuantidadeStatus();
                     break;
                 case 6:
+                    gerenciarAlarmes();
+                    break;
+                case 7:
                     System.out.println("Saindo");
                     return;
                 default:
@@ -172,18 +180,34 @@ public class MenuTerminal {
                 System.out.println("Status invalido");
                 return;
         }
-        LocalDateTime horarioAlarme;
+        Tarefa novaTarefa = new Tarefa(nome, descricao, dataTermino, prioridade, categoria, status);
+        tarefaService.salvarTarefa(novaTarefa);
+
         while (true) {
-            System.out.print("Data de alarme (AAAA-MM-DDTHH:mm): ");
-            try {
-                horarioAlarme = LocalDateTime.parse(leStringConsole(scanner));
+            System.out.print("Data de alarme (AAAA-MM-DDTHH:mm) ou digite 'N' para pular: ");
+            String valor = leStringConsole(scanner);
+            if (valor.equalsIgnoreCase("n")) {
                 break;
+            }
+
+            try {
+                LocalDateTime horario = LocalDateTime.parse(valor);
+                alarmeService.adicionarAlarme(novaTarefa, horario);
+                System.out.println("Alarme adicionado!");
+
+                System.out.println("Deseja adicionar outro alarme para esta tarefa?");
+                System.out.println("1. Sim");
+                System.out.println("2. Nao");
+                System.out.print("Resposta: ");
+                int resposta = leInteiroConsole(scanner);
+
+                if (resposta != 1) {
+                    break;
+                }
             } catch (DateTimeParseException e) {
                 System.out.println("Data invalida!\nDigite no formato AAAA-MM-DDTHH:mm");
             }
         }
-        Tarefa novaTarefa = new Tarefa(nome, descricao, dataTermino, prioridade, categoria, status, horarioAlarme);
-        tarefaService.salvarTarefa(novaTarefa);
 
         System.out.println("Tarefa cadastrada com sucesso!");
     }
@@ -282,16 +306,34 @@ public class MenuTerminal {
                 }
                 break;
             case 7:
+                if (tarefa.getAlarmes().isEmpty()) {
+                    System.out.println("Esta tarefa nao possui alarmes para atualizar.");
+                    return;
+                }
+
                 while (true) {
-                    System.out.print("Data e hora do alarme (AAAA-MM-DDTHH:mm): ");
-                    valor = leStringConsole(scanner);
+                    System.out.println("Alarmes atuais:");
+                    for (int i = 0; i < tarefa.getAlarmes().size(); i++) {
+                        System.out.println((i + 1) + ". " + tarefa.getAlarmes().get(i).getHorarioAlarme());
+                    }
+
+                    System.out.print("Escolha o numero do alarme que deseja atualizar: ");
+                    int opcaoAlarme = leInteiroConsole(scanner);
+
+                    if (opcaoAlarme < 1 || opcaoAlarme > tarefa.getAlarmes().size()) {
+                        System.out.println("Opcao invalida. Tente novamente.");
+                        continue;
+                    }
+
+                    System.out.print("Nova data e hora do alarme (AAAA-MM-DDTHH:mm): ");
+                    String novoHorario = leStringConsole(scanner);
+
                     try {
-                        LocalDateTime.parse(valor);
+                        LocalDateTime.parse(novoHorario);
+                        valor = (opcaoAlarme - 1) + ";" + novoHorario;
                         break;
                     } catch (DateTimeParseException e) {
-                        System.out.println(
-                                "Data invalida! Digite no formato AAAA-MM-DDTHH:mm"
-                        );
+                        System.out.println("Data invalida! Digite no formato AAAA-MM-DDTHH:mm");
                     }
                 }
                 break;
@@ -400,7 +442,15 @@ public class MenuTerminal {
             System.out.println("Prioridade: " + t.getPrioridade());
             System.out.println("Categoria: " + t.getCategoria());
             System.out.println("Status: " + t.getStatus());
-            System.out.println("Alarme: " + t.getHorarioAlarme());
+            System.out.print("Alarmes: ");
+            if(t.getAlarmes().isEmpty()){
+                System.out.println("Nenhum");
+            } else {
+                for(Alarme a : t.getAlarmes()) {
+                    System.out.print(a.getHorarioAlarme() + " | ");
+                }
+                System.out.println();
+            }
             System.out.println("\n");
         });
     }
@@ -414,5 +464,96 @@ public class MenuTerminal {
         System.out.println("TODO: " + todo);
         System.out.println("DOING: " + doing);
         System.out.println("DONE: " + done);
+    }
+
+    public void gerenciarAlarmes() {
+        List<Tarefa> tarefas = tarefaService.listarTarefas();
+        if (tarefas.isEmpty()) {
+            System.out.println("Nao existem tarefas cadastradas");
+            return;
+        }
+
+        System.out.println("\nTarefas cadastradas:");
+        for (int i = 0; i < tarefas.size(); i++) {
+            System.out.println((i + 1) + ". " + tarefas.get(i).getNome());
+        }
+
+        System.out.print("Escolha a tarefa que deseja gerenciar os alarmes: ");
+        int tarefaEscolhida = leInteiroConsole(scanner);
+        if (tarefaEscolhida < 1 || tarefaEscolhida > tarefas.size()) {
+            System.out.println("Opcao invalida");
+            return;
+        }
+
+        Tarefa tarefa = tarefas.get(tarefaEscolhida - 1);
+
+        System.out.println("\nGerenciando Alarmes de: " + tarefa.getNome());
+        System.out.println("1. Adicionar novo alarme");
+        System.out.println("2. Editar alarme existente");
+        System.out.println("3. Excluir alarme existente");
+        System.out.print("Resposta: ");
+        int opcao = leInteiroConsole(scanner);
+
+        switch (opcao) {
+            case 1:
+                System.out.print("Data e hora do novo alarme (AAAA-MM-DDTHH:mm): ");
+                String novoHorarioStr = leStringConsole(scanner);
+                try {
+                    LocalDateTime horario = LocalDateTime.parse(novoHorarioStr);
+                    alarmeService.adicionarAlarme(tarefa, horario);
+                    System.out.println("Alarme adicionado com sucesso!");
+                } catch (DateTimeParseException e) {
+                    System.out.println("Data invalida! Digite no formato AAAA-MM-DDTHH:mm");
+                }
+                break;
+
+            case 2:
+                if (tarefa.getAlarmes().isEmpty()) {
+                    System.out.println("Esta tarefa nao possui alarmes para editar.");
+                    return;
+                }
+                System.out.println("Alarmes atuais:");
+                for (int i = 0; i < tarefa.getAlarmes().size(); i++) {
+                    System.out.println((i + 1) + ". " + tarefa.getAlarmes().get(i).getHorarioAlarme());
+                }
+                System.out.print("Escolha o numero do alarme que deseja editar: ");
+                int opcaoEditar = leInteiroConsole(scanner);
+                if (opcaoEditar < 1 || opcaoEditar > tarefa.getAlarmes().size()) {
+                    System.out.println("Opcao invalida.");
+                    return;
+                }
+                System.out.print("Nova data e hora do alarme (AAAA-MM-DDTHH:mm): ");
+                String horarioEditado = leStringConsole(scanner);
+                try {
+                    alarmeService.atualizarAlarme(tarefa, opcaoEditar - 1, LocalDateTime.parse(horarioEditado));
+                    System.out.println("Alarme atualizado com sucesso!");
+                } catch (DateTimeParseException e) {
+                    System.out.println("Data invalida!");
+                }
+                break;
+
+            case 3:
+                if (tarefa.getAlarmes().isEmpty()) {
+                    System.out.println("Esta tarefa nao possui alarmes para excluir.");
+                    return;
+                }
+                System.out.println("Alarmes atuais:");
+                for (int i = 0; i < tarefa.getAlarmes().size(); i++) {
+                    System.out.println((i + 1) + ". " + tarefa.getAlarmes().get(i).getHorarioAlarme());
+                }
+                System.out.print("Escolha o numero do alarme que deseja excluir: ");
+                int opcaoExcluir = leInteiroConsole(scanner);
+                if (opcaoExcluir < 1 || opcaoExcluir > tarefa.getAlarmes().size()) {
+                    System.out.println("Opcao invalida.");
+                    return;
+                }
+
+                alarmeService.removerAlarme(tarefa, opcaoExcluir - 1);
+                System.out.println("Alarme excluido com sucesso!");
+                break;
+
+            default:
+                System.out.println("Opcao invalida.");
+        }
     }
 }
