@@ -88,9 +88,9 @@ public class MenuTerminal {
     }
 
     public void tarefas(Usuario usuario) {
-        tarefaService.verificarAlarmes();
         System.out.println("Seja bem vindo as suas tarefas");
         do {
+            tarefaService.verificarAlarmes();
             System.out.println("\nMenu:");
             System.out.println("1. Cadastrar tarefas");
             System.out.println("2. Editar tarefas");

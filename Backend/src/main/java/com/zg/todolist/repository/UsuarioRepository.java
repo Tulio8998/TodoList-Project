@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UsuarioRepository {
     private List<Usuario> usuarios;
-    private final String NOME_ARQUIVO = "src/main/java/com/zg/todolist/files/usuarios.csv";
+    private final String NOME_ARQUIVO = "Backend/src/main/java/com/zg/todolist/files/usuarios.csv";
 
     public UsuarioRepository() {
         usuarios = new ArrayList<>();

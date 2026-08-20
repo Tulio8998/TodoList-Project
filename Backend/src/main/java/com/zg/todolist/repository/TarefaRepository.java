@@ -61,7 +61,7 @@ public class TarefaRepository {
     }
 
     public void usuarioAtual(String email) {
-        this.nomeArquivo = "src/main/java/com/zg/todolist/files/tarefas_" + email + ".csv";
+        this.nomeArquivo = "Backend/src/main/java/com/zg/todolist/files/tarefas_" + email + ".csv";
         this.tarefas.clear();
         carregarArquivo();
     }
