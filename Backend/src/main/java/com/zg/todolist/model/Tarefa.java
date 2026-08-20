@@ -1,7 +1,8 @@
 package com.zg.todolist.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tarefa implements Comparable<Tarefa> {
     private String nome;
@@ -10,9 +11,9 @@ public class Tarefa implements Comparable<Tarefa> {
     private String categoria;
     private int prioridade;
     private Status status;
-    private LocalDateTime horarioAlarme;
+    private List<Alarme> alarmes;
 
-    public Tarefa(String nome, String descricao, LocalDate dataTermino, int prioridade, String categoria, Status status, LocalDateTime horarioAlarme) {
+    public Tarefa(String nome, String descricao, LocalDate dataTermino, int prioridade, String categoria, Status status) {
         if (prioridade < 1 || prioridade > 5) {
             throw new IllegalArgumentException("Prioridade invalida\n Deve esta entre 1 e 5");
         }
@@ -23,7 +24,7 @@ public class Tarefa implements Comparable<Tarefa> {
         this.categoria = categoria;
         this.prioridade = prioridade;
         this.status = status;
-        this.horarioAlarme = horarioAlarme;
+        this.alarmes = new ArrayList<Alarme>();
     }
 
     public String getNome() {
@@ -74,12 +75,12 @@ public class Tarefa implements Comparable<Tarefa> {
         this.status = status;
     }
 
-    public LocalDateTime getHorarioAlarme() {
-        return horarioAlarme;
+    public List<Alarme> getAlarmes() {
+        return alarmes;
     }
 
-    public void setHorarioAlarme(LocalDateTime horarioAlarme) {
-        this.horarioAlarme = horarioAlarme;
+    public void setAlarmes(List<Alarme> alarmes) {
+        this.alarmes = alarmes;
     }
 
     @Override

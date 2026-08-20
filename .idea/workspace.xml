@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b5c27d1-e520-48ec-ae95-9fdf46d19a52" name="Changes" comment="" />
+    <list default="true" id="2b5c27d1-e520-48ec-ae95-9fdf46d19a52" name="Changes" comment="feat: implementa estrutura de frontend">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/cli/MenuTerminal.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/cli/MenuTerminal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/files/usuarios.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/files/usuarios.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/model/Tarefa.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/model/Tarefa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/repository/TarefaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/repository/TarefaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/service/TarefaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/service/TarefaService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,29 +43,42 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Tulio8998"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Tulio8998&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Tulio8998/TodoList-Project.git",
-    "accountId": "cef20b0d-64ca-4977-ac5f-c52a641c03e9"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Tulio8998/TodoList-Project.git&quot;,
+    &quot;accountId&quot;: &quot;cef20b0d-64ca-4977-ac5f-c52a641c03e9&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/Main.java" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="3IBptBYjK58K3u9O2ggqllQ1HAf" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -65,12 +86,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
     "Gradle.Backend [:com.zg.todolist.Main.main()].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "feature/frontend-todoList",
     "last_opened_file_path": "/home/tulio/Documentos/Repositório GIT/ACZG/Desafios/K1/TodoList-Project",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -119,10 +142,33 @@
       <option name="presentableId" value="Default" />
       <updated>1786203785093</updated>
       <workItem from="1787248028918" duration="439000" />
+      <workItem from="1787248476833" duration="10768000" />
     </task>
+    <task id="LOCAL-00001" summary="chore: reorganiza estrutura de pastas backend">
+      <option name="closed" value="true" />
+      <created>1787249188777</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1787249188777</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: implementa estrutura de frontend">
+      <option name="closed" value="true" />
+      <created>1787249723035</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1787249723035</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="chore: reorganiza estrutura de pastas backend" />
+    <MESSAGE value="feat: implementa estrutura de frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implementa estrutura de frontend" />
   </component>
 </project>

@@ -24,7 +24,7 @@ public class TarefaRepository {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
             for (Tarefa t : tarefas) {
                 String linha = t.getNome() + ";" + t.getDescricao() + ";" + t.getDataTermino().toString() + ";" +
-                        t.getPrioridade() + ";" + t.getCategoria() + ";" + t.getStatus().name() + ";" + t.getHorarioAlarme();
+                        t.getPrioridade() + ";" + t.getCategoria() + ";" + t.getStatus().name();
                 writer.write(linha);
                 writer.newLine();
             }
@@ -43,15 +43,14 @@ public class TarefaRepository {
             String linha;
             while ((linha = reader.readLine()) != null) {
                 String[] dados = linha.split(";");
-                if (dados.length == 7) {
+                if (dados.length == 6) {
                     String nome = dados[0];
                     String descricao = dados[1];
                     LocalDate data = LocalDate.parse(dados[2]);
                     int prioridade = Integer.parseInt(dados[3]);
                     String categoria = dados[4];
                     Status status = Status.valueOf(dados[5]);
-                    LocalDateTime horarioAlarme = LocalDateTime.parse(dados[6]);
-                    Tarefa tarefa = new Tarefa(nome, descricao, data, prioridade, categoria, status, horarioAlarme);
+                    Tarefa tarefa = new Tarefa(nome, descricao, data, prioridade, categoria, status);
                     tarefas.add(tarefa);
                 }
             }
