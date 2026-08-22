@@ -1,0 +1,36 @@
+header {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.search-bar {
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #d1d1d1;
+}
+
+.search-bar .search-content {
+    background-color: #FFFFFF;
+    padding: 0.5rem 1rem;
+    width: 30rem;
+    border: 1px solid #D0D7DC;
+    border-radius: 30px;
+}
+
+.search-content div {
+    background-color: #FFFFFF;
+    padding: 0.5rem 0.5rem;
+}
+
+.search-content .input-search {
+    width: 100%;
+}
+
+.search-content .input-search::placeholder {
+    color: #474747;
+    font-style: italic;
+    font-size: 1rem;
+}
