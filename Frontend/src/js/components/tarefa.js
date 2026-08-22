@@ -5,31 +5,25 @@ class BuscarTarefa extends HTMLElement{
                 <div class="search-content">
                     <input class="input-search" type="text" placeholder="Buscar tarefa">
                 </div>
-                <a href="signIn.html" class="logout-link">Sair da Conta</a>
+                <a href="#" class="logout-link">Sair da Conta</a>
             </header>
         `;
+        
+        this.querySelector(".logout-link").addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = "signIn.html";
+        });
     }
 }
-
 customElements.define("search-bar", BuscarTarefa)
 
 class AlarmeTarefa extends HTMLElement{
     connectedCallback() {
         this.innerHTML = `
             <div class="alarm-class">
-                <div class="alarm-content">
-                    <div>
-                        <p class="alarm-notification">Lembrete: alarme de tarefa</p> 
-                        <button class="close-alarm" type="button">x</button>
-                    </div>
-                </div>
+                <div class="alarm-container"></div>
             </div>
         `;
-        
-        const closeAlarmBtn = this.querySelector(".close-alarm");
-        closeAlarmBtn.addEventListener("click", () => {
-            this.querySelector(".alarm-class").style.display = "none";
-        });
     }
 }
 
