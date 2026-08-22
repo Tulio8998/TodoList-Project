@@ -19,6 +19,7 @@
 
 .search-content .input-search {
     width: 100%;
+    height: 2rem;
 }
 
 .search-content .input-search::placeholder {
