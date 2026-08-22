@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b5c27d1-e520-48ec-ae95-9fdf46d19a52" name="Changes" comment="feat: implementa estrutura de frontend">
+    <list default="true" id="2b5c27d1-e520-48ec-ae95-9fdf46d19a52" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/cli/MenuTerminal.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/cli/MenuTerminal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/files/usuarios.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/files/usuarios.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/model/Tarefa.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/model/Tarefa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/repository/TarefaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/repository/TarefaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/service/TarefaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/service/TarefaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/styles/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/styles/global.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,10 +41,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -83,29 +78,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Gradle.Backend [:com.zg.todolist.Main.main()].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/frontend-todoList",
-    "last_opened_file_path": "/home/tulio/Documentos/Repositório GIT/ACZG/Desafios/K1/TodoList-Project",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "configurable.group.tools",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Gradle.Backend [:com.zg.todolist.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/frontend-todoList&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/tulio/Documentos/Repositório GIT/ACZG/Desafios/K1/TodoList-Project&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.tools&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.zg.todolist.Main" />
@@ -142,7 +137,9 @@
       <option name="presentableId" value="Default" />
       <updated>1786203785093</updated>
       <workItem from="1787248028918" duration="439000" />
-      <workItem from="1787248476833" duration="10768000" />
+      <workItem from="1787248476833" duration="12057000" />
+      <workItem from="1787295282579" duration="652000" />
+      <workItem from="1787365755915" duration="900000" />
     </task>
     <task id="LOCAL-00001" summary="chore: reorganiza estrutura de pastas backend">
       <option name="closed" value="true" />
@@ -160,7 +157,23 @@
       <option name="project" value="LOCAL" />
       <updated>1787249723035</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="refactor: separa Alarme, ajusta relacionamentos e leitura de CSV isolada de alarmes">
+      <option name="closed" value="true" />
+      <created>1787260442133</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1787260442133</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: adiciona gerenciamento de multiplos alarmes e thread de monitoramento">
+      <option name="closed" value="true" />
+      <created>1787260460026</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1787260460026</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,6 +182,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="chore: reorganiza estrutura de pastas backend" />
     <MESSAGE value="feat: implementa estrutura de frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implementa estrutura de frontend" />
+    <MESSAGE value="refactor: separa Alarme, ajusta relacionamentos e leitura de CSV isolada de alarmes" />
+    <MESSAGE value="feat: adiciona gerenciamento de multiplos alarmes e thread de monitoramento" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: adiciona gerenciamento de multiplos alarmes e thread de monitoramento" />
   </component>
 </project>
