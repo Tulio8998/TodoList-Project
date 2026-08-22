@@ -50,6 +50,10 @@
     margin-bottom: 2rem;
 }
 
+.card-new p {
+    font-weight: bold;
+}
+
 .card-new:hover {
     cursor: pointer;
     transition: 0.1s;
@@ -72,10 +76,12 @@
 
 .background-up p:first-child{
     color: #000000;
+    font-weight: 800;
 }
 
 .background-up p:last-child{
-    color: #ff0000;
+    color: #ff5e00;
+    font-weight: 800;
 }
 
 .card .background-down {
@@ -84,7 +90,7 @@
     justify-content: center;
     width: 100%;
     height: 40%;
-    background-color: #3b10d6
+    background-color: #a1806b
 }
 
 .card .name-task {
@@ -412,6 +418,22 @@ form button:hover {
     margin-bottom: 1rem;
     text-align: center;
     font-weight: bold;
+}
+
+.status-counts p{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.status-counts p span {
+    padding: 1rem;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #444444;
+    background-color: #ffffff;
 }
 
 .btn-apply-filter {

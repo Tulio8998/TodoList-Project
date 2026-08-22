@@ -42,7 +42,7 @@ function renderTarefas(lista = tarefas) {
 
     const statusCounts = document.querySelector('.status-counts p');
     if (statusCounts) {
-        statusCounts.innerText = `Total: TODO: ${countTodo} | DOING: ${countDoing} | DONE: ${countDone}`;
+        statusCounts.innerHTML = `<span class="count-todo">TODO: ${countTodo}</span> <span class="count-doing">DOING: ${countDoing}</span> <span class="count-done">DONE: ${countDone}</span>`;
     }
 
     const cardNew = document.getElementById("card-new");
