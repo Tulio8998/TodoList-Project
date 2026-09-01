@@ -21,7 +21,7 @@ public class UsuarioService {
     }
 
     public boolean removerUsuario(Usuario u) {
-        if (usuarioRepository.buscarTodos().contains(u)) {
+        if (!usuarioRepository.buscarTodos().contains(u)) {
             return false;
         }
         usuarioRepository.remover(u);
