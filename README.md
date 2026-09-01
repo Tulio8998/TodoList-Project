@@ -5,6 +5,7 @@ Desenvolvido por Túlio
 * **Java:** Linguagem principal do projeto (Lógica, Orientação a Objetos, Stream API, File IO)
 * **Gradle:** Ferramenta de build
 * **HTML5, CSS3 e JavaScript puro (Vanilla JS):** Tecnologias base para a construção da interface do usuário (Frontend) e lógica de tela.
+* **Spock Framework:** Utilizado para a cobertura de testes unitários e desenvolvimento orientado a testes.
 
 ## Comentários
 O projeto foi desenvolvido pensando primeiro no funcionamento do MVP, mas também
@@ -29,11 +30,20 @@ implementação foram:
 * **Gerenciamento de Estado (CRUD):** A lógica de criação, leitura, atualização e exclusão das tarefas foi construída utilizando arrays em memória. Sem persistência de dados.
 * **UX:** Adição de interatividade cliente, incluindo um sistema de filtros combinados (categoria, prioridade e status), barra de pesquisa dinâmica por nome da tarefa e um sistema de alarmes
 
+### Versão 1.2.0
+* **Testes Unitários:** Implementação de testes unitários com Spock para os Services e Repositories.
+* **Cobertura:** Testes das operações de criação, atualização, remoção e consulta de tarefas e alarmes.
+* **Mocks:** Utilização de mocks para isolar as dependências dos Services durante os testes.
+
 ## Execução pela IDE
 1. Abra o projeto no IntelliJ IDEA.
 2. Aguarde o Gradle sincronizar o projeto.
 3. Localize a classe Main.java.
 4. Clique no botão Run ao lado do método main.
 5. Siga as instruções do menu interativo no terminal.
+
+## Execução via Gradle
+1. Abra o terminal na pasta Backend.
+2. Execute o comando correspondente ao seu sistema: ./gradlew run
 
 Observação: O projeto utiliza Java 21 e Gradle 9.7.0 como ferramenta de build
