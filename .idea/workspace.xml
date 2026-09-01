@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2b5c27d1-e520-48ec-ae95-9fdf46d19a52" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/styles/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/styles/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/files/tarefas_teste.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/zg/todolist/files/tarefas_teste.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/styles/signIn.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/styles/signUp.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,8 +89,8 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/frontend-todoList&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/tulio/Documentos/Repositório GIT/ACZG/Desafios/K1/TodoList-Project&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/testes-unitarios&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/tulio/Documentos/Repositório GIT/ACZG/Desafios/K1/TodoList-Project/Backend&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -140,6 +143,10 @@
       <workItem from="1787248476833" duration="12057000" />
       <workItem from="1787295282579" duration="652000" />
       <workItem from="1787365755915" duration="1584000" />
+      <workItem from="1787761105739" duration="10000" />
+      <workItem from="1788044417252" duration="29000" />
+      <workItem from="1788200190350" duration="508000" />
+      <workItem from="1788203550463" duration="132000" />
     </task>
     <task id="LOCAL-00001" summary="chore: reorganiza estrutura de pastas backend">
       <option name="closed" value="true" />
