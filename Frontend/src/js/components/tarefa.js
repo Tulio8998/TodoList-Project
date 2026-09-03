@@ -36,8 +36,11 @@ function renderTarefas(lista = tarefaService.buscarPorUsuario(usuarioLog.email))
         const card = document.createElement('div');
         card.className = 'card';
         card.dataset.nome = tarefa.nome;
-        
+
         card.innerHTML = `
+            <div class="checkbox-status">
+                <input class="input-status" type="checkbox" style="cursor: pointer;">
+            </div>
             <div class="background-up">
                 <p>${tarefa.categoria}</p>
                 <p>${tarefa.status}</p>
@@ -47,7 +50,18 @@ function renderTarefas(lista = tarefaService.buscarPorUsuario(usuarioLog.email))
             </div>
         `;
         
-        card.addEventListener('click', () => abrirEdicao(tarefa));
+        card.addEventListener('click', (e) => {
+            const editStatus = document.querySelector(".tarefa-cards").classList.contains("edit-status");
+            
+            if (editStatus) {
+                if (!e.target.classList.contains('input-status')) {
+                    const check = card.querySelector('.input-status');
+                    check.checked = !check.checked;
+                }
+                return;
+            }
+            abrirEdicao(tarefa);
+        });
         cardsContainer.appendChild(card);
     });
 
@@ -312,5 +326,19 @@ document.addEventListener("DOMContentLoaded", () => {
     if(titleBar && usuarioLog) {
         titleBar.innerText = `Todo List - ${usuarioLog.nome}`;
     }
+    renderTarefas();
+});
+
+
+document.addEventListener("applyEditStatus", (e) => {
+    const { nomes, novoStatus } = e.detail;
+    nomes.forEach(nome => {
+        const tarefa = tarefaService.buscarPorNome(nome, usuarioLog.email);
+        if (tarefa) {
+            tarefa.status = novoStatus;
+            tarefaService.atualizarTarefa(tarefa);
+        }
+    });
+    
     renderTarefas();
 });

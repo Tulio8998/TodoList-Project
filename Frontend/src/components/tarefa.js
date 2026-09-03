@@ -303,3 +303,71 @@ class FiltrarTarefa extends HTMLElement {
 }
 
 customElements.define("filter-container", FiltrarTarefa)
+
+
+class MudarStatusTarefa extends HTMLElement {
+    connectedCallback(){
+        this.innerHTML = `
+            <div class="status-container">
+                <button class="btn-status" type="button">Alterar status</button>
+                <div class="status-dropdown" style="display: none;">
+                    <div class="filter-group">
+                        <label>Status:</label>
+                        <select class="select-new-status">
+                            <option value="">Todos</option>
+                            <option value="TODO">TODO</option>
+                            <option value="DOING">DOING</option>
+                            <option value="DONE">DONE</option>
+                        </select>
+                    </div>
+                    <button class="btn-apply-status" type="button">Aplicar</button>
+                </div>
+            </div>
+        `
+
+        const btnStatus = this.querySelector(".btn-status");
+        const statusDropdown = this.querySelector(".status-dropdown");
+        const btnApply = this.querySelector(".btn-apply-status");
+        const selectStatus = this.querySelector(".select-new-status");
+        
+        btnStatus.addEventListener("click", () => {
+            const isHidden = statusDropdown.style.display === "none";
+            statusDropdown.style.display = isHidden ? "block" : "none";
+            const cardsContainer = document.querySelector(".tarefa-cards");
+            if(cardsContainer) {
+                cardsContainer.classList.toggle("edit-status", isHidden);
+            }
+        });
+
+        btnApply.addEventListener("click", () => {
+            const novoStatus = selectStatus.value;
+            if (!novoStatus) {
+                alert("Selecione um status válido.");
+                return;
+            }
+
+            const checkedInputs = document.querySelectorAll(".card .input-status:checked");
+            if (checkedInputs.length === 0) {
+                alert("Selecione pelo menos uma tarefa marcando a caixa no card");
+                return;
+            }
+
+            const nomesTarefas = Array.from(checkedInputs).map(input => {
+                return input.closest(".card").dataset.nome;
+            });
+
+            document.dispatchEvent(new CustomEvent("applyEditStatus", {
+                detail: { nomes: nomesTarefas, novoStatus: novoStatus }
+            }));
+
+            statusDropdown.style.display = "none";
+            selectStatus.value = "";
+            document.querySelector(".tarefa-cards").classList.remove("edit-status");
+        });
+    }
+    
+}
+
+customElements.define("status-container", MudarStatusTarefa)
+
+
