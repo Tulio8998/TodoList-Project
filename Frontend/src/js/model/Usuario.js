@@ -1,4 +1,4 @@
-class Usuario {
+export class Usuario {
     constructor(nome, email, senha) {
         const usuarios = JSON.parse(localStorage.getItem('usuarios_db') || '[]')
         const existe = usuarios.some(u => u.email === email)
