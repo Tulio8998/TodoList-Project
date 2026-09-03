@@ -35,6 +35,18 @@
     transform: scale(1.01)
 }
 
+.card .checkbox-status {
+    display: none;
+    background-color: #e4e4e4;
+    padding: 0.5rem;
+    border: none;
+}
+
+.tarefa-cards.edit-status .card .checkbox-status {
+    display: flex;
+    justify-content: flex-start;
+}
+
 .card-new {
     display: flex;
     align-items: center;
@@ -368,7 +380,68 @@ form button:hover {
 
 
 
+.status-container {
+    position: absolute;
+}
 
+.btn-status {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #000000;
+    font-size: 1rem;
+}
+
+.btn-status:hover {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #b41818;
+    font-size: 1rem;
+}
+
+.status-dropdown {
+    position: absolute;
+    top: 150%;
+    right: 1000;
+    background: #FFFFFF;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 1.5rem;
+    width: 14rem;
+    z-index: 2000;
+}
+
+.status-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: #000000;
+}
+
+.status-group input, .status-group select {
+    padding: 0.5rem;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+}
+
+.btn-apply-status {
+    background-color: #2A2A31;
+    color: #FFFFFF;
+    border: none;
+    padding: 0.5rem;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-apply-status:hover {
+    background-color: #4c4c55;
+}
 
 
 
@@ -381,7 +454,16 @@ form button:hover {
     border: none;
     cursor: pointer;
     font-weight: bold;
-    color: #3b10d6;
+    color: #000000;
+    font-size: 1rem;
+}
+
+.btn-filter:hover {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #b41818;
     font-size: 1rem;
 }
 
