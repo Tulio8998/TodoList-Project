@@ -1,92 +1,40 @@
 export class AlarmeService {
     dado = 'alarmes_db'
-
+    
     buscarTodos() {
         return JSON.parse(localStorage.getItem(this.dado) || '[]')
     }
+    
+    buscarPorUsuario(email) {
+        return this.buscarTodos().filter(a => a.emailUsuario === email)
+    }
+    
+    buscarPorTarefa(nomeTarefa, email) {
+        return this.buscarPorUsuario(email).filter(a => a.nomeTarefa === nomeTarefa)
+    }
 
-    adicionarAlarme(tarefa, horario) {
-        const alarme = {
-            horarioAlarme: horario,
-            tarefa: tarefa
-        }
-
-        tarefa.alarmes.push(alarme)
-
+    adicionarAlarme(alarme) {
         const alarmes = this.buscarTodos()
         alarmes.push(alarme)
-
         localStorage.setItem(this.dado, JSON.stringify(alarmes))
     }
 
-    atualizarAlarme(tarefa, indexAlarme, novoHorario) {
-        const alarme = tarefa.alarmes[indexAlarme]
-
-        if (!alarme) {
-            throw new Error('Alarme nao encontrado')
-        }
-
-        alarme.horarioAlarme = novoHorario
-
+    removerPorTarefa(nomeTarefa, email) {
         const alarmes = this.buscarTodos()
-        const index = alarmes.findIndex(a => a.tarefa.nome === tarefa.nome &&
-                a.horarioAlarme === alarme.horarioAlarme)
+        const novosAlarmes = alarmes.filter(a => !(a.nomeTarefa === nomeTarefa && a.emailUsuario === email))
+        localStorage.setItem(this.dado, JSON.stringify(novosAlarmes))
+    }
 
+    atualizarAlarme(alarmeAtualizado) {
+        const alarmes = this.buscarTodos()
+        const index = alarmes.findIndex(a => 
+            a.nomeTarefa === alarmeAtualizado.nomeTarefa && 
+            a.horarioAlarme === alarmeAtualizado.horarioAlarme && 
+            a.emailUsuario === alarmeAtualizado.emailUsuario
+        )
         if (index !== -1) {
-            alarmes[index] = alarme
+            alarmes[index] = alarmeAtualizado
+            localStorage.setItem(this.dado, JSON.stringify(alarmes))
         }
-
-        localStorage.setItem(this.dado,JSON.stringify(alarmes))
-    }
-
-    removerAlarme(tarefa, indexAlarme) {
-        const alarmeRemovido = tarefa.alarmes[indexAlarme]
-
-        if (!alarmeRemovido) {
-            throw new Error('Alarme não encontrado')
-        }
-
-        tarefa.alarmes.splice(indexAlarme, 1)
-
-        const alarmes = this.buscarTodos()
-        const index = alarmes.indexOf(alarmeRemovido)
-
-        if (index !== -1) {
-            alarmes.splice(index, 1)
-        }
-
-        localStorage.setItem(this.dado,JSON.stringify(alarmes))
-    }
-
-    removerTodosAlarmes(tarefa) {
-        tarefa.alarmes = []
-        const alarmes = this.buscarTodos()
-
-        const novosAlarmes = alarmes.filter(alarme => alarme.tarefa.nome !== tarefa.nome)
-
-        localStorage.setItem(this.dado,JSON.stringify(novosAlarmes))
-    }
-
-    buscarPorTarefa(tarefa) {
-        const alarmes = this.buscarTodos()
-        return alarmes.filter(alarme => alarme.tarefa.nome === tarefa.nome)
-    }
-
-    verificarAlarme() {
-        const agora = new Date()
-        const alarmes = this.buscarTodos()
-        alarmes.forEach(e => {
-            if (e.horarioAlarme !== null) {
-                const dataAlarme = new Date(e.horarioAlarme);
-                if (dataAlarme <= agora && e.tarefa?.status !== Status.DONE) {
-                    console.log(`Alarme! Tarefa proxima do termino: ${e.tarefa.nome}`);
-                }
-            }
-        });
-    }
-
-    monitorarAlarme() {
-        this.verificarAlarmes();
-        return setInterval(() => { this.verificarAlarme(); }, 60000);
     }
 }
