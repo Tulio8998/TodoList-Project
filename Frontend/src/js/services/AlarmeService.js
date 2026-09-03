@@ -71,4 +71,22 @@ export class AlarmeService {
         const alarmes = this.buscarTodos()
         return alarmes.filter(alarme => alarme.tarefa.nome === tarefa.nome)
     }
+
+    verificarAlarme() {
+        const agora = new Date()
+        const alarmes = this.buscarTodos()
+        alarmes.forEach(e => {
+            if (e.horarioAlarme !== null) {
+                const dataAlarme = new Date(e.horarioAlarme);
+                if (dataAlarme <= agora && e.tarefa?.status !== Status.DONE) {
+                    console.log(`Alarme! Tarefa proxima do termino: ${e.tarefa.nome}`);
+                }
+            }
+        });
+    }
+
+    monitorarAlarme() {
+        this.verificarAlarmes();
+        return setInterval(() => { this.verificarAlarme(); }, 60000);
+    }
 }
