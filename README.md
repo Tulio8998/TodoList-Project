@@ -35,6 +35,10 @@ implementação foram:
 * **Cobertura:** Testes das operações de criação, atualização, remoção e consulta de tarefas e alarmes.
 * **Mocks:** Utilização de mocks para isolar as dependências dos Services durante os testes.
 
+### Versão 1.3.0
+* **Persistência de dados:** Implementação de Local Storage para armazernar os dados no navegador
+* **Setar status:** Implementação de alterar o status de mais de uma tarefa ao mesmo tempo
+
 ## Execução pela IDE
 1. Abra o projeto no IntelliJ IDEA.
 2. Aguarde o Gradle sincronizar o projeto.
