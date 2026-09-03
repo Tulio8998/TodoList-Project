@@ -1,6 +1,8 @@
 export class Alarme {
-    constructor(horarioAlarme, tarefa) {
+    constructor(horarioAlarme, nomeTarefa, emailUsuario) {
         this.horarioAlarme = horarioAlarme
-        this.tarefa = tarefa
+        this.nomeTarefa = nomeTarefa
+        this.emailUsuario = emailUsuario
+        this.rang = false 
     }
 }
