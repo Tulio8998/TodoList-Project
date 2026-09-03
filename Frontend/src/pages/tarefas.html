@@ -18,7 +18,7 @@
                  <painel-new></painel-new>
                  <painel-view></painel-view>
                  <div class="status-counts">
-                        <p><span class="count-todo">TODO: 0</span> | <span class="count-doing">DOING: 0</span> | <span class="count-done">DONE: 0</span> </p>
+                        <p><span class="count-todo">TODO: 0</span><span class="count-doing">DOING: 0</span><span class="count-done">DONE: 0</span> </p>
                     </div>
                  <filter-container></filter-container>
                  
@@ -27,13 +27,6 @@
                          <p>Adicionar tarefa +</p>
                      </div>
                     <div class="card" id="card">
-                        <div class="background-up">
-                            <p>Categoria</p>
-                            <p>Status</p>
-                        </div>
-                        <div class="background-down">
-                            <p class="name-task">Nome tarefa</p>
-                        </div>
                     </div>
                  </div>
                 
@@ -41,8 +34,8 @@
         </div>
     </section>
 
-    <script src="../js/components/top-bar.js"></script>
-    <script src="../js/components/tarefa.js"></script>
-    <script src="../js/utils/tarefa.js"></script>
+    <script src="../components/top-bar.js"></script>
+    <script src="../components/tarefa.js"></script>
+    <script type="module" src="../js/components/tarefa.js"></script>
 </body>
 </html>
