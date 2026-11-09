@@ -156,7 +156,7 @@ if (formNew) {
         const categoria = inputs[3].value.trim();
         const prioridade = inputs[4].value;
 
-        if (!nome || !dataTermino || !descricao || !categoria || !prioridade) {
+        if (!nome || !descricao || !categoria || !prioridade) {
             alert("Preencha todos os campos da tarefa para prosseguir.");
             return;
         }
@@ -202,14 +202,16 @@ if (formView) {
             const categoria = inputs[3].value.trim();
             const prioridade = inputs[4].value;
 
-            if (!dataTermino || !descricao || !categoria || !prioridade) {
+            if (!descricao || !categoria || !prioridade) {
                 alert("Preencha todos os campos da tarefa para prosseguir.");
                 return;
             }
 
             let prioridadeValidada;
+            let dataTerminoValidada;
             try {
                 prioridadeValidada = Tarefa.parsePrioridade(prioridade);
+                dataTerminoValidada = Tarefa.parseDataTermino(dataTermino);
             } catch (error) {
                 alert(error.message);
                 return;
@@ -218,7 +220,7 @@ if (formView) {
             const statusChecked = formView.querySelector('input[name="status"]:checked');
             const alarmesInputs = formView.querySelectorAll(".alarmes-container input[type='datetime-local']");
             
-            tarefaEditada.dataTermino = dataTermino;
+            tarefaEditada.dataTermino = dataTerminoValidada;
             tarefaEditada.descricao = descricao;
             tarefaEditada.categoria = categoria;
             tarefaEditada.prioridade = prioridadeValidada;

@@ -24,7 +24,7 @@ Este plano implementa a especificação em [spec.md](./spec.md). A prioridade e 
 
 ### 4. Validação de data no frontend
 
-- [ ] **O que será feito:** Validar `YYYY-MM-DD` com Regex, confirmar que a data existe no calendário e rejeitar datas anteriores ao dia atual, permitindo hoje e datas futuras. Exibir mensagens claras e não salvar alterações inválidas.
+- [x] **O que será feito:** Validar `YYYY-MM-DD` com Regex, confirmar que a data existe no calendário e rejeitar datas anteriores ao dia atual, permitindo hoje e datas futuras. Exibir mensagens claras e não salvar alterações inválidas.
 - **Arquivos afetados:** `Frontend/src/js/model/Tarefa.js`, `Frontend/src/js/components/tarefa.js` e, se necessário, o campo de data nos componentes de formulário em `Frontend/src/components/tarefa.js`.
 - **Como validar:** Teste manual no navegador: criar e editar tarefas com data válida futura, hoje, formato incorreto, dia inexistente e data passada; confirmar a mensagem e que os dados existentes permanecem inalterados quando a validação falha.
 

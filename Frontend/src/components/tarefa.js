@@ -1,3 +1,16 @@
+function setMinimumTaskDate(component) {
+    const now = new Date();
+    const today = [
+        String(now.getFullYear()).padStart(4, '0'),
+        String(now.getMonth() + 1).padStart(2, '0'),
+        String(now.getDate()).padStart(2, '0')
+    ].join('-');
+
+    component.querySelectorAll('input[type="date"]').forEach(input => {
+        input.min = today;
+    });
+}
+
 class BuscarTarefa extends HTMLElement{
     connectedCallback() {
         this.innerHTML = `
@@ -100,6 +113,7 @@ class AdicionarTarefa extends HTMLElement{
                 </div>
             </div>
         `;
+        setMinimumTaskDate(this);
 
         const closeButton = this.querySelector(".close-panel");
         closeButton.addEventListener("click", () => {
@@ -219,7 +233,8 @@ class VisualizarTarefa extends HTMLElement{
                 </div>
             </div>
         `;
-        
+        setMinimumTaskDate(this);
+
         const closeButton = this.querySelector(".close-panel");
         closeButton.addEventListener("click", () => {
             this.querySelector(".panel-view").style.display = "none";
@@ -369,4 +384,3 @@ class MudarStatusTarefa extends HTMLElement {
 }
 
 customElements.define("status-container", MudarStatusTarefa)
-
