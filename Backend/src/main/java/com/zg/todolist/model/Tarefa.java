@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tarefa implements Comparable<Tarefa> {
+    private static final String PRIORIDADE_REGEX = "^[1-5]$";
+
     private String nome;
     private String descricao;
     private LocalDate dataTermino;
@@ -14,17 +16,24 @@ public class Tarefa implements Comparable<Tarefa> {
     private List<Alarme> alarmes;
 
     public Tarefa(String nome, String descricao, LocalDate dataTermino, int prioridade, String categoria, Status status) {
-        if (prioridade < 1 || prioridade > 5) {
-            throw new IllegalArgumentException("Prioridade invalida\n Deve esta entre 1 e 5");
-        }
-
         this.descricao = descricao;
         this.nome = nome;
         this.dataTermino = dataTermino;
         this.categoria = categoria;
-        this.prioridade = prioridade;
+        this.prioridade = validarPrioridade(prioridade);
         this.status = status;
         this.alarmes = new ArrayList<Alarme>();
+    }
+
+    public static int parsePrioridade(String prioridade) {
+        if (prioridade == null || !prioridade.matches(PRIORIDADE_REGEX)) {
+            throw new IllegalArgumentException("Prioridade inválida. Deve ser um único número entre 1 e 5.");
+        }
+        return Integer.parseInt(prioridade);
+    }
+
+    private static int validarPrioridade(int prioridade) {
+        return parsePrioridade(Integer.toString(prioridade));
     }
 
     public String getNome() {
@@ -60,7 +69,7 @@ public class Tarefa implements Comparable<Tarefa> {
     }
 
     public void setPrioridade(int prioridade) {
-        this.prioridade = prioridade;
+        this.prioridade = validarPrioridade(prioridade);
     }
 
     public void setCategoria(String categoria) {

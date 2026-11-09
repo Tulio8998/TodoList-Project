@@ -6,7 +6,7 @@ Este plano implementa a especificação em [spec.md](./spec.md). A prioridade e 
 
 ### 1. Validação de prioridade no backend
 
-- [ ] **O que será feito:** Validar a prioridade como texto com `^[1-5]$` antes de convertê-la para número, rejeitando entradas vazias, fora do intervalo ou com caracteres adicionais. Garantir que a regra de domínio também impeça valores inválidos ao criar ou atualizar tarefas e lance uma exceção clara.
+- [x] **O que será feito:** Validar a prioridade como texto com `^[1-5]$` antes de convertê-la para número, rejeitando entradas vazias, fora do intervalo ou com caracteres adicionais. Garantir que a regra de domínio também impeça valores inválidos ao criar ou atualizar tarefas e lance uma exceção clara.
 - **Arquivos afetados:** `Backend/src/main/java/com/zg/todolist/model/Tarefa.java`, `Backend/src/main/java/com/zg/todolist/cli/MenuTerminal.java`, testes Spock em `Backend/src/test/groovy/com/zg/todolist/`.
 - **Como validar:** Adicionar testes Spock para prioridades válidas e inválidas, executar `cd Backend && ./gradlew test` e confirmar que a entrada inválida não salva a tarefa.
 

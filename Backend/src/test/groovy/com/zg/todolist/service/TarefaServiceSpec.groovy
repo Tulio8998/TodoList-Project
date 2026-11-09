@@ -67,6 +67,28 @@ class TarefaServiceSpec extends Specification {
         1 * tarefaRepository.atualizarTarefa(tarefa1)
     }
 
+    def "deve rejeitar prioridade inválida sem persistir a atualização"() {
+        when:
+        tarefaService.atualizarTarefa(tarefa1, 5, "6")
+
+        then:
+        def exception = thrown(IllegalArgumentException)
+        exception.message == "Prioridade inválida. Deve ser um único número entre 1 e 5."
+        0 * tarefaRepository.atualizarTarefa(_)
+        tarefa1.getPrioridade() == 1
+    }
+
+    def "deve validar prioridade como texto antes de atualizar"() {
+        when:
+        tarefaService.atualizarTarefa(tarefa1, 5, "01")
+
+        then:
+        def exception = thrown(IllegalArgumentException)
+        exception.message == "Prioridade inválida. Deve ser um único número entre 1 e 5."
+        0 * tarefaRepository.atualizarTarefa(_)
+        tarefa1.getPrioridade() == 1
+    }
+
     def "deve listar tarefa por prioridade"() {
         given: "duas tarefas previamente adicionadas"
         tarefaRepository.getTarefas() >> [tarefa1, tarefa2]

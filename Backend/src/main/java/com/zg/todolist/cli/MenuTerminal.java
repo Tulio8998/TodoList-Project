@@ -151,11 +151,16 @@ public class MenuTerminal {
                 System.out.println("Data invalida!\nDigite no formato AAAA-MM-DD");
             }
         }
-        System.out.print("Nível de prioridade (1 a 5): ");
-        int prioridade = leInteiroConsole(scanner);
-        if (prioridade < 1 || prioridade > 5) {
-            System.out.println("Prioridade invalida. Deve estar entre 1 e 5");
-            return;
+        int prioridade;
+        while (true) {
+            System.out.print("Nível de prioridade (1 a 5): ");
+            String valorPrioridade = leStringConsole(scanner);
+            try {
+                prioridade = Tarefa.parsePrioridade(valorPrioridade);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.print("Categoria: ");
         String categoria = leStringConsole(scanner);
@@ -283,13 +288,10 @@ public class MenuTerminal {
                     System.out.print("Nova prioridade (1 a 5): ");
                     valor = leStringConsole(scanner);
                     try {
-                        int prioridade = Integer.parseInt(valor);
-                        if (prioridade >= 1 && prioridade <= 5) {
-                            break;
-                        }
-                        System.out.println("Prioridade invalida. Deve estar entre 1 e 5");
-                    } catch (NumberFormatException e) {
-                        System.out.println("Prioridade invalida. Digite um número de 1 a 5");
+                        Tarefa.parsePrioridade(valor);
+                        break;
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
                     }
                 }
                 break;
