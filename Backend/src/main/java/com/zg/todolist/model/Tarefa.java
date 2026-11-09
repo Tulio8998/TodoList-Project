@@ -1,11 +1,13 @@
 package com.zg.todolist.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Tarefa implements Comparable<Tarefa> {
     private static final String PRIORIDADE_REGEX = "^[1-5]$";
+    private static final String DATA_TERMINO_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
 
     private String nome;
     private String descricao;
@@ -36,6 +38,31 @@ public class Tarefa implements Comparable<Tarefa> {
         return parsePrioridade(Integer.toString(prioridade));
     }
 
+    public static LocalDate parseDataTermino(String dataTermino) {
+        if (dataTermino == null || !dataTermino.matches(DATA_TERMINO_REGEX)) {
+            throw new IllegalArgumentException("Data de término inválida. Use o formato YYYY-MM-DD.");
+        }
+
+        LocalDate data;
+        try {
+            data = LocalDate.parse(dataTermino);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Data de término inválida. Informe uma data existente no formato YYYY-MM-DD.", e);
+        }
+
+        validarDataTermino(data);
+        return data;
+    }
+
+    public static void validarDataTermino(LocalDate dataTermino) {
+        if (dataTermino == null) {
+            throw new IllegalArgumentException("Data de término inválida. Use o formato YYYY-MM-DD.");
+        }
+        if (dataTermino.isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("Data de término deve ser hoje ou uma data futura.");
+        }
+    }
+
     public String getNome() {
         return nome;
     }
@@ -57,6 +84,7 @@ public class Tarefa implements Comparable<Tarefa> {
     }
 
     public void setDataTermino(LocalDate dataTermino) {
+        validarDataTermino(dataTermino);
         this.dataTermino = dataTermino;
     }
 

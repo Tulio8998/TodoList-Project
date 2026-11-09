@@ -21,7 +21,7 @@ class TarefaServiceSpec extends Specification {
         tarefa1 = new Tarefa(
                 "Tarefa 1",
                 "Descrição 1",
-                LocalDate.of(2026, 9, 10),
+                LocalDate.now().plusDays(1),
                 1,
                 "Estudo",
                 Status.DOING
@@ -29,7 +29,7 @@ class TarefaServiceSpec extends Specification {
         tarefa2 = new Tarefa(
                 "Tarefa 2",
                 "Descrição 2",
-                LocalDate.of(2026, 9, 15),
+                LocalDate.now().plusDays(5),
                 2,
                 "Trabalho",
                 Status.TODO
@@ -45,6 +45,26 @@ class TarefaServiceSpec extends Specification {
 
         then: "o repositorio deve receber uma nova tarefa"
         1 * tarefaRepository.salvarTarefa(tarefa1)
+    }
+
+    def "deve rejeitar salvamento de tarefa com data passada sem persistir"() {
+        given:
+        def tarefaExpirada = new Tarefa(
+                "Tarefa expirada",
+                "Descrição",
+                LocalDate.now().minusDays(1),
+                1,
+                "Estudo",
+                Status.TODO
+        )
+
+        when:
+        tarefaService.salvarTarefa(tarefaExpirada)
+
+        then:
+        def exception = thrown(IllegalArgumentException)
+        exception.message == "Data de término deve ser hoje ou uma data futura."
+        0 * tarefaRepository.salvarTarefa(_)
     }
 
     def "deve remover tarefa"() {
@@ -87,6 +107,20 @@ class TarefaServiceSpec extends Specification {
         exception.message == "Prioridade inválida. Deve ser um único número entre 1 e 5."
         0 * tarefaRepository.atualizarTarefa(_)
         tarefa1.getPrioridade() == 1
+    }
+
+    def "deve rejeitar data passada na atualização sem persistir"() {
+        given:
+        def dataOriginal = tarefa1.getDataTermino()
+
+        when:
+        tarefaService.atualizarTarefa(tarefa1, 6, LocalDate.now().minusDays(1).toString())
+
+        then:
+        def exception = thrown(IllegalArgumentException)
+        exception.message == "Data de término deve ser hoje ou uma data futura."
+        0 * tarefaRepository.atualizarTarefa(_)
+        tarefa1.getDataTermino() == dataOriginal
     }
 
     def "deve listar tarefa por prioridade"() {

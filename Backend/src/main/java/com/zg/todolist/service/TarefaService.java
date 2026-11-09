@@ -23,6 +23,7 @@ public class TarefaService {
     }
 
     public void salvarTarefa(Tarefa tarefa) {
+        Tarefa.validarDataTermino(tarefa.getDataTermino());
         tarefaRepository.salvarTarefa(tarefa);
         Collections.sort(tarefaRepository.getTarefas());
     }
@@ -50,7 +51,7 @@ public class TarefaService {
                 tarefa.setPrioridade(Tarefa.parsePrioridade(valor));
                 break;
             case 6:
-                tarefa.setDataTermino(LocalDate.parse(valor));
+                tarefa.setDataTermino(Tarefa.parseDataTermino(valor));
                 break;
             case 7:
                 String[] dadosAlarme = valor.split(";");

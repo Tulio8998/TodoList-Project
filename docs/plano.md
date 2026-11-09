@@ -12,7 +12,7 @@ Este plano implementa a especificação em [spec.md](./spec.md). A prioridade e 
 
 ### 2. Validação de data no backend
 
-- [ ] **O que será feito:** Validar o formato ISO `YYYY-MM-DD` com Regex antes do parse, rejeitar datas inexistentes e datas anteriores ao dia atual. Permitir hoje e datas futuras e lançar exceções claras por tipo de falha.
+- [x] **O que será feito:** Validar o formato ISO `YYYY-MM-DD` com Regex antes do parse, rejeitar datas inexistentes e datas anteriores ao dia atual. Permitir hoje e datas futuras e lançar exceções claras por tipo de falha.
 - **Arquivos afetados:** `Backend/src/main/java/com/zg/todolist/model/Tarefa.java`, `Backend/src/main/java/com/zg/todolist/cli/MenuTerminal.java`, testes Spock em `Backend/src/test/groovy/com/zg/todolist/`.
 - **Como validar:** Cobrir com Spock formato inválido, data impossível, data passada, hoje e data futura; executar `cd Backend && ./gradlew test`.
 

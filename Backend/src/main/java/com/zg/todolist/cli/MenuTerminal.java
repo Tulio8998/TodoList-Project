@@ -145,10 +145,10 @@ public class MenuTerminal {
         while (true) {
             System.out.print("Data de termino (AAAA-MM-DD): ");
             try {
-                dataTermino = LocalDate.parse(leStringConsole(scanner));
+                dataTermino = Tarefa.parseDataTermino(leStringConsole(scanner));
                 break;
-            } catch (DateTimeParseException e) {
-                System.out.println("Data invalida!\nDigite no formato AAAA-MM-DD");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
         int prioridade;
@@ -300,10 +300,10 @@ public class MenuTerminal {
                     System.out.print("Data de termino (AAAA-MM-DD): ");
                     valor = leStringConsole(scanner);
                     try {
-                        LocalDate.parse(valor);
+                        Tarefa.parseDataTermino(valor);
                         break;
-                    } catch (DateTimeParseException e) {
-                        System.out.println("Data invalida! Digite no formato AAAA-MM-DD");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
                     }
                 }
                 break;
