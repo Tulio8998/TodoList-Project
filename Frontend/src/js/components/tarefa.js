@@ -166,7 +166,7 @@ if (formNew) {
         
         try {
             const novaTarefa = new Tarefa(
-                nome, descricao, dataTermino, categoria, parseInt(prioridade), 
+                nome, descricao, dataTermino, categoria, prioridade,
                 statusChecked ? statusChecked.value : 'TODO',
                 usuarioLog.email
             );
@@ -207,13 +207,21 @@ if (formView) {
                 return;
             }
 
+            let prioridadeValidada;
+            try {
+                prioridadeValidada = Tarefa.parsePrioridade(prioridade);
+            } catch (error) {
+                alert(error.message);
+                return;
+            }
+
             const statusChecked = formView.querySelector('input[name="status"]:checked');
             const alarmesInputs = formView.querySelectorAll(".alarmes-container input[type='datetime-local']");
             
             tarefaEditada.dataTermino = dataTermino;
             tarefaEditada.descricao = descricao;
             tarefaEditada.categoria = categoria;
-            tarefaEditada.prioridade = parseInt(prioridade);
+            tarefaEditada.prioridade = prioridadeValidada;
             tarefaEditada.status = statusChecked ? statusChecked.value : 'TODO';
             tarefaService.atualizarTarefa(tarefaEditada);
             alarmeService.removerPorTarefa(currentEditNome, usuarioLog.email);

@@ -58,7 +58,7 @@ class AdicionarTarefa extends HTMLElement{
                                 </div>
                                 <div class="input-group">
                                     <p>Prioridade:</p>
-                                    <input class="input-tarefa" type="number" placeholder="1 a 5" min="1" max="5">
+                                    <input class="input-tarefa" type="text" inputmode="numeric" pattern="[1-5]" maxlength="1" placeholder="1 a 5" title="Digite um único número entre 1 e 5" required>
                                 </div>
                                 <div class="input-group">
                                     <p>Status:</p>
@@ -176,7 +176,7 @@ class VisualizarTarefa extends HTMLElement{
                                 </div>
                                 <div class="input-group">
                                     <p>Prioridade:</p>
-                                    <input class="input-tarefa" type="number" placeholder="1 a 5" min="1" max="5">
+                                    <input class="input-tarefa" type="text" inputmode="numeric" pattern="[1-5]" maxlength="1" placeholder="1 a 5" title="Digite um único número entre 1 e 5" required>
                                 </div>
                                 <div class="input-group">
                                     <p>Status:</p>
@@ -369,5 +369,4 @@ class MudarStatusTarefa extends HTMLElement {
 }
 
 customElements.define("status-container", MudarStatusTarefa)
-
 

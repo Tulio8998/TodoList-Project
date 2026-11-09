@@ -18,7 +18,7 @@ Este plano implementa a especificação em [spec.md](./spec.md). A prioridade e 
 
 ### 3. Validação de prioridade no frontend
 
-- [ ] **O que será feito:** Validar a entrada da prioridade com `^[1-5]$` sem convertê-la antes da validação e exibir uma mensagem clara se não corresponder. Aplicar a regra ao criar e editar, impedindo persistência inválida.
+- [x] **O que será feito:** Validar a entrada da prioridade com `^[1-5]$` sem convertê-la antes da validação e exibir uma mensagem clara se não corresponder. Aplicar a regra ao criar e editar, impedindo persistência inválida.
 - **Arquivos afetados:** `Frontend/src/js/model/Tarefa.js`, `Frontend/src/js/components/tarefa.js` e, se necessário, o campo de prioridade nos componentes de formulário em `Frontend/src/components/tarefa.js`.
 - **Como validar:** Teste manual no navegador: criar e editar tarefas com prioridades `1`, `3`, `5`, vazia, `0`, `6`, decimal, negativa e com caracteres extras; verificar mensagem e ausência de gravação em `localStorage` nos casos inválidos.
 
