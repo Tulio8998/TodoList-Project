@@ -39,6 +39,13 @@ implementação foram:
 * **Persistência de dados:** Implementação de Local Storage para armazernar os dados no navegador
 * **Setar status:** Implementação de alterar o status de mais de uma tarefa ao mesmo tempo
 
+### Versão 1.4.0
+
+* **Validação de Dados com Regex:** Implementação de validações de formulário utilizando Expressões Regulares (Regex) em ambas as camadas (Frontend com Vanilla JS/HTML5 e Backend com Java).
+* **Regras de Negócio de Criação:** Restrição rigorosa do nível de prioridade (aceitando apenas valores de 1 a 5) e validação da data de término, bloqueando a inserção de datas no passado.
+* **Cobertura de Exceções:** Inserção de mensagens de erro responsivas no frontend e adição de testes unitários no Spock para cobrir os cenários de falha de validação no backend.
+* **Engenharia (SDD):** Feature arquitetada e desenvolvida utilizando a metodologia Spec-Driven Development (SDD), orientada por documentação prévia (Especificação e Plano).
+
 ## Execução pela IDE
 1. Abra o projeto no IntelliJ IDEA.
 2. Aguarde o Gradle sincronizar o projeto.
