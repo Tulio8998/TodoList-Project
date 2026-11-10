@@ -1,21 +1,5 @@
 # Relatório da feature: validação de tarefas
 
-## Consumo de tokens/créditos por etapa
-
-Preencha os valores com base no painel de uso da plataforma. O consumo detalhado por etapa não estava disponível durante a preparação deste relatório.
-
-| Etapa | Tokens de entrada | Tokens de saída | Total de tokens | Créditos/custo | Observações |
-|---|---:|---:|---:|---:|---|
-| Especificação (`docs/spec.md`) | ____ | ____ | ____ | ____ | |
-| Plano (`docs/plano.md`) | ____ | ____ | ____ | ____ | |
-| Tarefa 1 — prioridade no backend | ____ | ____ | ____ | ____ | |
-| Tarefa 2 — data no backend | ____ | ____ | ____ | ____ | |
-| Tarefa 3 — prioridade no frontend | ____ | ____ | ____ | ____ | |
-| Tarefa 4 — data no frontend | ____ | ____ | ____ | ____ | |
-| Validação integrada e revisão final | ____ | ____ | ____ | ____ | |
-| Skill reutilizável | ____ | ____ | ____ | ____ | |
-| **Total** | ____ | ____ | ____ | ____ | |
-
 ## Desvios e Correções
 
 - **Instruções ambíguas sobre as tarefas 3 e 4:** os pedidos mencionaram backend, mas o plano aprovado definia prioridade e data no frontend. A discrepância foi apontada e a implementação seguiu o plano: as regras correspondentes já tinham sido implementadas no backend nas tarefas 1 e 2.
