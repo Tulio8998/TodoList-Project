@@ -1,3 +1,16 @@
+function setMinimumTaskDate(component) {
+    const now = new Date();
+    const today = [
+        String(now.getFullYear()).padStart(4, '0'),
+        String(now.getMonth() + 1).padStart(2, '0'),
+        String(now.getDate()).padStart(2, '0')
+    ].join('-');
+
+    component.querySelectorAll('input[type="date"]').forEach(input => {
+        input.min = today;
+    });
+}
+
 class BuscarTarefa extends HTMLElement{
     connectedCallback() {
         this.innerHTML = `
@@ -58,7 +71,7 @@ class AdicionarTarefa extends HTMLElement{
                                 </div>
                                 <div class="input-group">
                                     <p>Prioridade:</p>
-                                    <input class="input-tarefa" type="number" placeholder="1 a 5" min="1" max="5">
+                                    <input class="input-tarefa" type="text" inputmode="numeric" pattern="[1-5]" maxlength="1" placeholder="1 a 5" title="Digite um único número entre 1 e 5" required>
                                 </div>
                                 <div class="input-group">
                                     <p>Status:</p>
@@ -100,6 +113,7 @@ class AdicionarTarefa extends HTMLElement{
                 </div>
             </div>
         `;
+        setMinimumTaskDate(this);
 
         const closeButton = this.querySelector(".close-panel");
         closeButton.addEventListener("click", () => {
@@ -176,7 +190,7 @@ class VisualizarTarefa extends HTMLElement{
                                 </div>
                                 <div class="input-group">
                                     <p>Prioridade:</p>
-                                    <input class="input-tarefa" type="number" placeholder="1 a 5" min="1" max="5">
+                                    <input class="input-tarefa" type="text" inputmode="numeric" pattern="[1-5]" maxlength="1" placeholder="1 a 5" title="Digite um único número entre 1 e 5" required>
                                 </div>
                                 <div class="input-group">
                                     <p>Status:</p>
@@ -219,7 +233,8 @@ class VisualizarTarefa extends HTMLElement{
                 </div>
             </div>
         `;
-        
+        setMinimumTaskDate(this);
+
         const closeButton = this.querySelector(".close-panel");
         closeButton.addEventListener("click", () => {
             this.querySelector(".panel-view").style.display = "none";
@@ -369,5 +384,3 @@ class MudarStatusTarefa extends HTMLElement {
 }
 
 customElements.define("status-container", MudarStatusTarefa)
-
-
